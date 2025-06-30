@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Primera Ley de Newton - Inercia</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .juego-contenedor {
+      border: 2px solid #444;
+      border-radius: 15px;
+      padding: 20px;
+      background-color: white;
+      width: 820px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      margin-bottom: 30px;
+    }
+
+    .titulo-juego {
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    #game-area, #game-area2 {
+      position: relative;
+      width: 800px;
+      height: 150px;
+      margin: 0 auto 20px auto;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      background-color: #fafafa;
+      overflow: hidden;
+    }
+
+    #box, #carro {
+      width: 50px;
+      height: 50px;
+      background-color: #3498db;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      border-radius: 5px;
+    }
+
+    #carro {
+      background-color: #e67e22;
+    }
+
+    .botones {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #2ecc71;
+      color: white;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #27ae60;
+    }
+
+    #status, #status2 {
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .controles {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .controles label,
+    .controles input {
+      font-size: 16px;
+    }
+
+    .controles input {
+      width: 60px;
+      padding: 4px;
+    }
+  </style>
+</head>
+<body>
+   <button onclick="window.location.href='tema.html'">Volver</button>
+
+  <h1>Primera Ley de Newton - Inercia</h1>
+
+  <!-- JUEGO 1 -->
+  <div class="juego-contenedor">
+    <div class="titulo-juego">Juego 1: Caja que se desliza</div>
+    <div id="game-area">
+      <div id="box"></div>
+    </div>
+    <div class="botones">
+      <button onclick="applyForce()">Aplicar Fuerza</button>
+      <button onclick="toggleFriction()">Activar/Desactivar Fricción</button>
+      <button onclick="reiniciarJuego()">Reiniciar</button>
+    </div>
+    <div id="status">Fricción: <strong>Desactivada</strong></div>
+  </div>
+
+  <!-- JUEGO 2 -->
+  <div class="juego-contenedor">
+    <div class="titulo-juego">Juego 2: Carro en la pista</div>
+    <div class="controles">
+      <label for="masa">Masa (kg):</label>
+      <input type="number" id="masa" value="5" min="1" max="100">
+      <label for="fuerza">Fuerza (N):</label>
+      <input type="number" id="fuerza" value="10" min="1" max="100">
+    </div>
+    <div class="botones">
+      <button onclick="iniciarMovimiento()">Aplicar Fuerza</button>
+      <button onclick="reiniciarCarro()">Reiniciar</button>
+    </div>
+    <div id="game-area2">
+      <div id="carro"></div>
+    </div>
+    <div id="status2">Aceleración: <strong>0</strong> m/s²</div>
+  </div>
+
+  <script>
+    // JUEGO 1
+    const box = document.getElementById("box");
+    const statusText = document.getElementById("status");
+
+    let position = 0;
+    let velocity = 0;
+    let frictionEnabled = false;
+    let animationFrame;
+
+    function applyForce() {
+      velocity += 5;
+    }
+
+    function toggleFriction() {
+      frictionEnabled = !frictionEnabled;
+      statusText.innerHTML = `Fricción: <strong>${frictionEnabled ? "Activada" : "Desactivada"}</strong>`;
+    }
+
+    function reiniciarJuego() {
+      cancelAnimationFrame(animationFrame);
+      position = 0;
+      velocity = 0;
+      box.style.left = "0px";
+      update();
+    }
+
+    function update() {
+      if (frictionEnabled && velocity > 0) {
+        velocity -= 0.05;
+        if (velocity < 0) velocity = 0;
+      }
+
+      position += velocity;
+      if (position > 750) {
+        position = 750;
+        velocity = 0;
+      }
+
+      box.style.left = position + "px";
+      animationFrame = requestAnimationFrame(update);
+    }
+
+    update();
+
+    // JUEGO 2
+    const carro = document.getElementById("carro");
+    const status2 = document.getElementById("status2");
+
+    let masa = 5;
+    let fuerza = 10;
+    let aceleracion = 0;
+    let velocidad2 = 0;
+    let posicion2 = 0;
+    let animacion;
+
+    function iniciarMovimiento() {
+      masa = parseFloat(document.getElementById("masa").value);
+      fuerza = parseFloat(document.getElementById("fuerza").value);
+
+      aceleracion = fuerza / masa;
+      velocidad2 = 0;
+      posicion2 = 0;
+
+      status2.innerHTML = `Aceleración: <strong>${aceleracion.toFixed(2)}</strong> m/s²`;
+
+      cancelAnimationFrame(animacion);
+      mover();
+    }
+
+    function mover() {
+      velocidad2 += aceleracion;
+      posicion2 += velocidad2;
+
+      if (posicion2 > 750) {
+        posicion2 = 750;
+        velocidad2 = 0;
+      }
+
+      carro.style.left = posicion2 + "px";
+      animacion = requestAnimationFrame(mover);
+    }
+
+    function reiniciarCarro() {
+      cancelAnimationFrame(animacion);
+      posicion2 = 0;
+      velocidad2 = 0;
+      aceleracion = 0;
+      carro.style.left = "0px";
+      status2.innerHTML = `Aceleración: <strong>0</strong> m/s²`;
+    }
+  </script>

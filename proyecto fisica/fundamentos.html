@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .barra-superior {
+      display: flex;
+      align-items: center;
+      background-color: #69a942;
+      padding: 0 20px;
+    }
+
+    .barra-superior .logo img {
+      height: 70px;
+      display: block;
+    }
+
+    .barra-superior .logous img {
+      height: 50px;
+      display: block;
+      border-radius: 50%;
+    }
+
+    .barra-superior .enlaces {
+      display: flex;
+      gap: 30px;
+      margin-left: auto;
+      margin-right: 20px;
+    }
+
+    .barra-superior .enlaces a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      line-height: 70px;
+    }
+
+    .barra-inferior {
+      display: flex;
+      align-items: center;
+      background-color: #abd194;
+      padding: 10px 20px;
+      gap: 20px;
+    }
+
+    .barra-inferior a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #ffffff;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+      padding: 10px;
+      z-index: 1;
+      border-radius: 5px;
+      min-width: 150px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 5px 10px;
+      text-decoration: none;
+      color: black;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .contenedor-central {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    .barra-derecha {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      width: 350px;
+      background-color: #ecffe1;
+    }
+
+    .video-texto {
+      width: 100%;
+      height: 250px;
+      background-color: #abd194;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .video-texto iframe {
+      width: 100%;
+      height: 150px;
+      border-radius: 10px;
+    }
+
+    .video-texto p {
+      font-size: 14px;
+      margin: 0;
+      padding-top: 10px;
+    }
+
+    .dropdown-vertical {
+      width: 100%;
+      position: relative;
+    }
+
+    .dropbtn-vertical {
+      width: 100%;
+      background-color: #ffffff;
+      color: black;
+      font-weight: bold;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .dropdown-content-vertical {
+      display: none;
+      position: relative;
+      background-color: #ffffff;
+      margin-top: 5px;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .dropdown-content-vertical a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: black;
+      font-size: 14px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .dropdown-content-vertical a:hover {
+      background-color: #f0f0f0;
+      color: #4CAF50;
+    }
+
+    .contenido {
+      flex: 1;
+      padding: 40px;
+      max-width: 800px;
+    }
+
+    section {
+      margin-bottom: 100px;
+    }
+
+    h2 {
+      margin-top: 60px;
+    }
+
+    .contenido-principal {
+      flex: 2;
+      padding: 20px;
+    }
+
+    .layout {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .barra-lateral {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="barra-superior">
+    <div class="logo">
+      <img src="logoutrahd.png" alt="Logo">
+    </div>
+    <div class="enlaces">
+      <a href="#">Ayuda</a>
+      <a href="#">Contacto</a>
+    </div>
+    <div class="logous">
+      <img src="usuarioo.png" alt="Usuario">
+    </div>
+  </div>
+
+  <nav class="barra-inferior">
+    <a href="seleccion.html">Home</a>
+    </div>
+    </div>
+  </nav>
+
+  <div class="contenedor-central">
+    <div class="contenido">
+        
+      <section id="#Fundamentos">
+        <p><h1>Fundamentos Teóricos</h1>
+            Los fundamentos teóricos que sustentan las leyes del movimiento de Newton se encuentran en la base de la mecánica clásica, una rama de la física que describe el comportamiento de los cuerpos bajo la acción de fuerzas. Estos principios fueron establecidos por Sir Isaac Newton en 1687 en su obra Philosophice Naturalis Principia Mathematica, marcando el inicio de una nueva era en la comprensión del universo físico.
+            <h1>Contexto histórico y científico</h1>   
+            Antes de Newton, las ideas sobre el movimiento estaban dominadas por la física aristotélica, que sostenía que los cuerpos requerían una fuerza constante para mantener su movimiento. Galileo Galilei fue quien sentó las bases del concepto de inercia, al observar que un cuerpo en movimiento tiende a seguir moviéndose si no hay fricción.
+            <p>Newton unificó estos conceptos y formuló tres leyes que explican cómo y por qué los objetos se mueven. Estas leyes no solo explican movimientos simples, como una pelota rodando o un automóvil acelerando, sino también fenómenos a escala planetaria, como la órbita de los planetas.</p>     
+        <h1>Base Conceptual</h1>
+        Las tres leyes de Newton actúan como herramientas universales en física para predecir el comportamiento de sistemas físicos. Son fundamentales para resolver problemas que involucran:
+        <ol>◉ Movimiento rectilíneo o curvilíneo</ol>
+        <ol>◉ Colisiones</ol>
+        <ol>◉ Caída libre</ol>
+        <ol>◉ Lanzamiento de proyectiles</ol>
+        <ol>◉ Dinámica de sistemas con fricción</ol>
+        </p>
+      </section>
+    </div>
+
+    <div class="barra-derecha">
+      <div class="video-texto">
+        <iframe src="https://www.youtube.com/watch?v=5EVBQbdmAeo&t=1277s" frameborder="0" allowfullscreen></iframe>
+        <p>Aquí puedes insertar un video explicativo del tema actual y escribir una breve introducción o contexto del contenido que se va a tratar.</p>
+      </div>
+
+      <div class="dropdown-vertical">
+        <button class="dropbtn-vertical" onclick="toggleDropdown()">Temas de Física</button>
+        <div class="dropdown-content-vertical" id="dropdownContenido">
+          <a href="tema.html">Primera ley de Newton</a>
+          <a href="tema2.html">segunda ley de Newton</a>
+          <a href="tema3.html">Tercera ley de Newton</a>
+          <a href="sistemas.html">Sistemas de Referencia Inerciales</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT para activar el menú -->
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("dropdownContenido");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    document.addEventListener("click", function(event) {
+      const dropdown = document.getElementById("dropdownContenido");
+      const button = document.querySelector(".dropbtn-vertical");
+      if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>

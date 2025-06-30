@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Inicio de Sesión</title>
+
+  <style>
+    /* === ESTILOS GENERALES DEL BODY === */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;                   /* Activa el sistema Flexbox */
+      justify-content: center;         /* Centra horizontalmente */
+      align-items: center;             /* Centra verticalmente */
+      background-color: #f2f2f2;       /* Fondo celeste claro */
+    }
+
+    /* === EFECTO DE ENTRADA ANIMADA === */
+    .deslizar {
+      animation: deslizarAbajo 1s ease-out forwards;
+    }
+
+    @keyframes deslizarAbajo {
+      from {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* === CUADRO PRINCIPAL DEL FORMULARIO === */
+    .elemento {
+      width: 300px;
+      padding: 60px;
+      border: 10px solid #e3e3e3;
+      border-radius: 20px;
+      background-color: #f4f4f4;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* === TÍTULO O IMAGEN SUPERIOR === */
+    .app-title h1 {
+      margin: 0 0 20px 0;
+    }
+
+    /* === FORMULARIO DE USUARIO === */
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Centra los elementos del formulario */
+      width: 100%;
+    }
+
+    /* === CAMPO DE TEXTO PARA EL USUARIO === */
+    .login-field {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    /* === BOTÓN DE INICIO DE SESIÓN === */
+    .login-button {
+      padding: 12px 24px;
+      background-color: #4CAF50;     /* Verde */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-button:hover {
+      background-color: #45a049;     /* Verde más oscuro al pasar el mouse */
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Contenedor con animación -->
+  <div class="deslizar">
+
+    <!-- Cuadro del formulario -->
+    <div class="elemento">
+
+      <!-- Imagen o título del formulario -->
+      <div class="app-title">
+        <h1>
+          <img src="usuarioo.png" alt="Usuario" width="200" height="200">
+        </h1>
+      </div>
+
+      <!-- Formulario de inicio de sesión -->
+      <div class="login-form">
+        <input type="text" class="login-field" id="usuario" placeholder="Usuario">
+
+        <!-- Botón para verificar usuario y avanzar -->
+        <button class="login-button" onclick="verificarUsuario()">Entrar</button>
+      </div>
+
+    </div> <!-- Fin del cuadro .elemento -->
+
+  </div> <!-- Fin del contenedor .deslizar -->
+
+  <!-- Script para verificar si el campo de usuario está lleno -->
+  <script>
+    function verificarUsuario() {
+      let usuario = document.getElementById("usuario").value.trim();
+
+      if (usuario !== "") {
+        window.location.href = "seleccion.html"; // Redirige si hay texto
+      } else {
+        alert("Por favor, ingresa tu nombre de usuario.");
+      }
+    }
+  </script>
+
+</body>
+</html>

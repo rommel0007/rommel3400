@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>inicio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .barra-superior {
+      display: flex;
+      align-items: center;
+      background-color: #69a942;
+      padding: 0 20px;
+    }
+
+    .barra-superior .logo img {
+      height: 70px;
+      display: block;
+    }
+
+    .barra-superior .logous img {
+      height: 50px;
+      display: block;
+      border-radius: 50%;
+    }
+
+    .barra-superior .enlaces {
+      display: flex;
+      gap: 30px;
+      margin-left: auto;
+      margin-right: 20px;
+    }
+
+    .barra-superior .enlaces a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      line-height: 70px;
+    }
+
+    .barra-inferior {
+      display: flex;
+      align-items: center;
+      background-color: #abd194;
+      padding: 10px 20px;
+      gap: 20px;
+    }
+
+    .barra-inferior a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .contenedor-central {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .contenido-central {
+      text-align: center;
+    }
+
+    .bienvenido {
+      font-size: 60px; /* Más grande */
+      font-weight: bold;
+      margin: 0;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: aparecer 1s ease forwards;
+    }
+
+    .instruccion {
+      font-size: 22px;
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: aparecer 1s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    @keyframes aparecer {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .galeria {
+      display: flex;
+      gap: 40px;
+    }
+
+    .galeria a img {
+      width: 380px;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .galeria a img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra superior -->
+  <div class="barra-superior">
+    <div class="logo">
+      <img src="logoutrahd.png" alt="Logo">
+    </div>
+    <div class="enlaces">
+      <a href="#">Inicio</a>
+      <a href="#">Ayuda</a>
+      <a href="#">Contacto</a>
+    </div>
+    <div class="logous">
+      <img src="usuarioo.png" alt="Usuario">
+    </div>
+  </div>
+
+  <!-- Barra inferior -->
+  <div class="barra-inferior">
+  </div>
+
+  <!-- Contenedor central con texto y galería -->
+  <div class="contenedor-central">
+    <div class="contenido-central">
+      <p class="bienvenido">Bienvenido</p>
+      <p class="instruccion">Eliga un tema antes de comenzar</p>
+      <div class="galeria">
+        <a href="tema.html"><img src="maxresdefault.jpg" alt="Imagen 1"></a>
+        <a href="tema2.html"><img src="maxresdefaul.jpg" alt="Imagen 2"></a>
+        <a href="tema3.html"><img src="maxresdefau.jpg" alt="Imagen 3"></a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

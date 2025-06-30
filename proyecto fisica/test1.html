@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Test de la Primera Ley de Newton</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .question {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .options {
+      list-style-type: none;
+      padding: 0;
+    }
+    .options li {
+      margin-bottom: 5px;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 3px;
+    }
+    .options li:hover {
+      background-color: #e0e0e0;
+    }
+    .selected {
+      background-color: #d3d3d3;
+    }
+    .button {
+      display: block;
+      width: 200px;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: #007BFF;
+      color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    #timer {
+      text-align: center;
+      font-size: 18px;
+      margin: 15px;
+    }
+    #result {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Test de la Primera Ley de Newton</h1>
+  <div id="timer">Tiempo restante: 2:00</div>
+  <div id="quiz"></div>
+  <a class="button" id="generateBtn" onclick="generateQuiz()">¡Realiza el intento!</a>
+  <a class="button" id="finishBtn" onclick="finishQuiz()" style="display:none;">Finalizar</a>
+  <div id="result"></div>
+
+  <script>
+    const questions = [
+      {
+        question: "¿Qué establece la Primera Ley de Newton?",
+        options: [
+          "Un objeto cambia su estado solo si una fuerza externa actúa sobre él",
+          "Todo objeto posee energía cinética",
+          "La fuerza es igual a la masa por la aceleración",
+          "Toda acción tiene una reacción igual y opuesta"
+        ],
+        answer: 0
+      },
+      {
+        question: "¿Qué es la inercia?",
+        options: [
+          "La energía potencial almacenada en un objeto",
+          "La tendencia de un cuerpo a acelerar",
+          "La propiedad de resistirse al cambio de movimiento",
+          "La dirección de la fuerza aplicada"
+        ],
+        answer: 2
+      },
+      {
+        question: "Si una silla está en reposo, ¿qué debe ocurrir para que se mueva?",
+        options: [
+          "Aumentar su masa",
+          "Reducir la fricción",
+          "Aplicar una fuerza externa",
+          "Que pase el tiempo"
+        ],
+        answer: 2
+      },
+      {
+        question: "Una sonda espacial sigue en línea recta y velocidad constante porque:",
+        options: [
+          "Está acelerando",
+          "No hay fuerzas actuando sobre ella",
+          "La gravedad la empuja",
+          "Tiene un cohete encendido"
+        ],
+        answer: 1
+      },
+      {
+        question: "¿Qué ocurre si la suma de las fuerzas sobre un objeto es cero?",
+        options: [
+          "Se acelera rápidamente",
+          "Se detiene automáticamente",
+          "Sigue en reposo o en movimiento constante",
+          "Pierde masa"
+        ],
+        answer: 2
+      },
+      {
+        question: "¿Cuál de estos es un ejemplo de inercia?",
+        options: [
+          "Una pelota se detiene al ser pateada",
+          "Un auto frena por sí solo",
+          "Un objeto permanece quieto si nadie lo empuja",
+          "Un avión gira por el viento"
+        ],
+        answer: 2
+      },
+      {
+        question: "¿Qué fuerzas actúan sobre una moto que va a velocidad constante?",
+        options: [
+          "Solo la gravedad",
+          "Ninguna",
+          "Fuerzas opuestas que se equilibran",
+          "Fuerza positiva únicamente"
+        ],
+        answer: 2
+      },
+      {
+        question: "Si un objeto se mueve a velocidad constante, entonces:",
+        options: [
+          "La aceleración es cero",
+          "Se está frenando",
+          "La inercia desaparece",
+          "La masa cambia"
+        ],
+        answer: 0
+      },
+      {
+        question: "¿Qué representa un diagrama de cuerpo libre?",
+        options: [
+          "Un objeto con velocidad",
+          "Fuerzas aplicadas sobre un objeto",
+          "La dirección del viento",
+          "Un análisis térmico"
+        ],
+        answer: 1
+      },
+      {
+        question: "¿Qué ocurre si un objeto no experimenta ninguna fuerza neta?",
+        options: [
+          "Se deforma",
+          "Se detiene de inmediato",
+          "Mantiene su estado de movimiento",
+          "Se acelera"
+        ],
+        answer: 2
+      }
+    ];
+
+    let selectedQuestions = [];
+    let userAnswers = [];
+    let quizStarted = false;
+    let timer;
+    let secondsLeft = 120;
+    let startTime;
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(secondsLeft / 60);
+      const seconds = secondsLeft % 60;
+      document.getElementById('timer').textContent = `Tiempo restante: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    function startTimer() {
+      updateTimerDisplay();
+      timer = setInterval(() => {
+        secondsLeft--;
+        updateTimerDisplay();
+        if (secondsLeft <= 0) {
+          clearInterval(timer);
+          finishQuiz(true);
+        }
+      }, 1000);
+    }
+
+    function generateQuiz() {
+      if (quizStarted) return;
+      quizStarted = true;
+      userAnswers = [];
+      startTime = new Date();
+      document.getElementById('generateBtn').style.display = 'none';
+      document.getElementById('finishBtn').style.display = 'block';
+      selectedQuestions = questions.sort(() => 0.5 - Math.random()).slice(0, 5);
+      const quizContainer = document.getElementById('quiz');
+      quizContainer.innerHTML = '';
+
+      selectedQuestions.forEach((q, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'question';
+        const questionTitle = document.createElement('h3');
+        questionTitle.textContent = `Pregunta ${index + 1}: ${q.question}`;
+        questionDiv.appendChild(questionTitle);
+
+        const optionsList = document.createElement('ul');
+        optionsList.className = 'options';
+
+        q.options.forEach((option, i) => {
+          const optionItem = document.createElement('li');
+          optionItem.textContent = option;
+          optionItem.onclick = () => {
+            userAnswers[index] = i;
+            [...optionsList.children].forEach(li => li.classList.remove('selected'));
+            optionItem.classList.add('selected');
+          };
+          optionsList.appendChild(optionItem);
+        });
+
+        questionDiv.appendChild(optionsList);
+        quizContainer.appendChild(questionDiv);
+      });
+
+      startTimer();
+    }
+
+    function finishQuiz(timeOut = false) {
+      clearInterval(timer);
+      document.getElementById('finishBtn').style.display = 'none';
+      let score = 0;
+
+      selectedQuestions.forEach((q, index) => {
+        if (userAnswers[index] === q.answer) {
+          score += 2;
+        }
+      });
+
+      const endTime = new Date();
+      const elapsedTime = Math.floor((endTime - startTime) / 1000);
+      const minutes = Math.floor(elapsedTime / 60);
+      const seconds = elapsedTime % 60;
+
+      const resultText = `Puntaje: ${score}/10<br>Tiempo usado: ${minutes}m ${seconds}s` +
+        (timeOut ? "<br><span style='color:red;'>Tiempo agotado</span>" : "");
+      
+      document.getElementById('result').innerHTML = resultText;
+    }
+  </script>
+
+</body>
+</html>

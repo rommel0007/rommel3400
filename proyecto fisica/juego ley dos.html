@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Segunda ley de Newton</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    .juego-contenedor {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      margin: 20px;
+      width: 860px;
+    }
+
+    .controles {
+      margin-bottom: 10px;
+    }
+
+    label, input {
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    .botones {
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #3498db;
+      color: white;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    #pista {
+      width: 800px;
+      height: 120px;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      background-color: #fafafa;
+      position: relative;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .carrito {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      border-radius: 5px;
+    }
+
+    #carro1 {
+      background-color: red;
+      top: 20px;
+      left: 0;
+    }
+
+    #carro2 {
+      background-color: green;
+      top: 70px;
+      left: 0;
+    }
+
+    #pista-objeto {
+      width: 800px;
+      height: 80px;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      background-color: #fafafa;
+      position: relative;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    #objeto {
+      width: 50px;
+      height: 50px;
+      background-color: orange;
+      position: absolute;
+      top: 15px; /* centrado en los 80px de altura */
+      left: 0;
+      border-radius: 8px;
+    }
+
+    .status {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .detalles-objeto {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+ <button onclick="window.location.href='tema2.html'">Volver</button>
+  <h1>Segunda ley de Newton</h1>
+
+  <!-- Juego 1: Competencia de Carritos -->
+  <div class="juego-contenedor">
+    <h2>Competencia de Carritos - Segunda Ley de Newton</h2>
+    <div class="controles">
+      <label for="masa1">Masa Carro 1 (kg):</label>
+      <input type="number" id="masa1" value="5" min="1" max="100">
+      <label for="masa2">Masa Carro 2 (kg):</label>
+      <input type="number" id="masa2" value="10" min="1" max="100">
+      <label for="fuerza">Fuerza (N):</label>
+      <input type="number" id="fuerza" value="20" min="1" max="100">
+    </div>
+
+    <div class="botones">
+      <button onclick="iniciarCompetencia()">Iniciar Carrera</button>
+      <button onclick="reiniciarCompetencia()">Reiniciar</button>
+    </div>
+
+    <div id="pista">
+      <div id="carro1" class="carrito"></div>
+      <div id="carro2" class="carrito"></div>
+    </div>
+
+    <div class="status" id="resultado"></div>
+  </div>
+
+  <!-- Juego 2: Empuja el Objeto -->
+  <div class="juego-contenedor">
+    <h2>Empuja el Objeto - Ley de Fuerza</h2>
+    <div class="controles">
+      <label for="masaObjeto">Masa del Objeto (kg):</label>
+      <input type="number" id="masaObjeto" value="5" min="1" max="100">
+      <label for="fuerzaObjeto">Fuerza (N):</label>
+      <input type="number" id="fuerzaObjeto" value="10" min="1" max="100">
+    </div>
+
+    <div class="botones">
+      <button onclick="empujarObjeto()">Empujar Objeto</button>
+      <button onclick="reiniciarObjeto()">Reiniciar</button>
+    </div>
+
+    <div id="pista-objeto">
+      <div id="objeto"></div>
+    </div>
+
+    <div class="status" id="resultado-objeto"></div>
+    <div class="detalles-objeto">
+      Masa: <span id="detalles-masa">5</span> kg, 
+      Fuerza: <span id="detalles-fuerza">10</span> N, 
+      Velocidad: <span id="detalles-velocidad">0</span> m/s
+    </div>
+  </div>
+
+  <script>
+    // Juego 1
+    const carro1 = document.getElementById("carro1");
+    const carro2 = document.getElementById("carro2");
+    const resultado = document.getElementById("resultado");
+
+    let anim1, anim2;
+    let pos1 = 0, pos2 = 0;
+    let vel1 = 0, vel2 = 0;
+    let corriendo = false;
+
+    function iniciarCompetencia() {
+      const masa1 = parseFloat(document.getElementById("masa1").value);
+      const masa2 = parseFloat(document.getElementById("masa2").value);
+      const fuerza = parseFloat(document.getElementById("fuerza").value);
+
+      const a1 = fuerza / masa1;
+      const a2 = fuerza / masa2;
+
+      pos1 = 0;
+      pos2 = 0;
+      vel1 = 0;
+      vel2 = 0;
+      resultado.innerText = "";
+      corriendo = true;
+
+      cancelAnimationFrame(anim1);
+      cancelAnimationFrame(anim2);
+
+      moverCarros(a1, a2);
+    }
+
+    function moverCarros(a1, a2) {
+      function mover1() {
+        if (!corriendo) return;
+        vel1 += a1 * 0.1;
+        pos1 += vel1;
+        if (pos1 >= 760) {
+          pos1 = 760;
+          carro1.style.left = pos1 + "px";
+          terminarCarrera("Carro 1 (rojo)");
+        } else {
+          carro1.style.left = pos1 + "px";
+          anim1 = requestAnimationFrame(mover1);
+        }
+      }
+
+      function mover2() {
+        if (!corriendo) return;
+        vel2 += a2 * 0.1;
+        pos2 += vel2;
+        if (pos2 >= 760) {
+          pos2 = 760;
+          carro2.style.left = pos2 + "px";
+          terminarCarrera("Carro 2 (verde)");
+        } else {
+          carro2.style.left = pos2 + "px";
+          anim2 = requestAnimationFrame(mover2);
+        }
+      }
+
+      mover1();
+      mover2();
+    }
+
+    function terminarCarrera(ganador) {
+      if (!corriendo) return;
+      corriendo = false;
+      cancelAnimationFrame(anim1);
+      cancelAnimationFrame(anim2);
+      resultado.innerHTML = `<strong>¡${ganador} gana!</strong>`;
+    }
+
+    function reiniciarCompetencia() {
+      cancelAnimationFrame(anim1);
+      cancelAnimationFrame(anim2);
+      pos1 = pos2 = vel1 = vel2 = 0;
+      carro1.style.left = "0px";
+      carro2.style.left = "0px";
+      resultado.innerText = "";
+      corriendo = false;
+    }
+
+    // Juego 2
+    const objeto = document.getElementById("objeto");
+    const resultadoObjeto = document.getElementById("resultado-objeto");
+    const detallesMasa = document.getElementById("detalles-masa");
+    const detallesFuerza = document.getElementById("detalles-fuerza");
+    const detallesVelocidad = document.getElementById("detalles-velocidad");
+
+    let posObjeto = 0;
+    let velocidad = 0;
+    let empujando = false;
+    let animObjeto;
+
+    function empujarObjeto() {
+      if (empujando) return;
+      empujando = true;
+
+      const masa = parseFloat(document.getElementById("masaObjeto").value);
+      const fuerza = parseFloat(document.getElementById("fuerzaObjeto").value);
+
+      const aceleracion = fuerza / masa;
+
+      detallesMasa.innerText = masa;
+      detallesFuerza.innerText = fuerza;
+
+      velocidad = 0;
+      posObjeto = 0;
+      objeto.style.left = "0px";
+      resultadoObjeto.innerText = "";
+      detallesVelocidad.innerText = "0";
+
+      moverObjeto(aceleracion);
+    }
+
+    function moverObjeto(aceleracion) {
+      velocidad += aceleracion * 0.1;
+      posObjeto += velocidad;
+
+      if (posObjeto >= 750) {
+        posObjeto = 750;
+        objeto.style.left = posObjeto + "px";
+        resultadoObjeto.innerHTML = "<strong>¡Has empujado el objeto hasta el final!</strong>";
+        detallesVelocidad.innerText = velocidad.toFixed(2);
+        empujando = false;
+        cancelAnimationFrame(animObjeto);
+        return;
+      }
+
+      objeto.style.left = posObjeto + "px";
+      detallesVelocidad.innerText = velocidad.toFixed(2);
+      animObjeto = requestAnimationFrame(() => moverObjeto(aceleracion));
+    }
+
+    function reiniciarObjeto() {
+      cancelAnimationFrame(animObjeto);
+      posObjeto = 0;
+      velocidad = 0;
+      objeto.style.left = "0px";
+      resultadoObjeto.innerText = "";
+      detallesVelocidad.innerText = "0";
+      empujando = false;
+    }
+  </script>
+
+</body>
+</html>

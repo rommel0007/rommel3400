@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .barra-superior {
+      display: flex;
+      align-items: center;
+      background-color: #69a942;
+      padding: 0 20px;
+    }
+
+    .barra-superior .logo img {
+      height: 70px;
+      display: block;
+    }
+
+    .barra-superior .logous img {
+      height: 50px;
+      display: block;
+      border-radius: 50%;
+    }
+
+    .barra-superior .enlaces {
+      display: flex;
+      gap: 30px;
+      margin-left: auto;
+      margin-right: 20px;
+    }
+
+    .barra-superior .enlaces a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      line-height: 70px;
+    }
+
+    .barra-inferior {
+      display: flex;
+      align-items: center;
+      background-color: #abd194;
+      padding: 10px 20px;
+      gap: 20px;
+    }
+
+    .barra-inferior a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #ffffff;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+      padding: 10px;
+      z-index: 1;
+      border-radius: 5px;
+      min-width: 150px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 5px 10px;
+      text-decoration: none;
+      color: black;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .contenedor-central {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    .barra-derecha {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      width: 350px;
+      background-color: #ecffe1;
+    }
+
+    .video-texto {
+      width: 100%;
+      height: 250px;
+      background-color: #abd194;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .video-texto iframe {
+      width: 100%;
+      height: 150px;
+      border-radius: 10px;
+    }
+
+    .video-texto p {
+      font-size: 14px;
+      margin: 0;
+      padding-top: 10px;
+    }
+
+    .dropdown-vertical {
+      width: 100%;
+      position: relative;
+    }
+
+    .dropbtn-vertical {
+      width: 100%;
+      background-color: #ffffff;
+      color: black;
+      font-weight: bold;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .dropdown-content-vertical {
+      display: none;
+      position: relative;
+      background-color: #ffffff;
+      margin-top: 5px;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .dropdown-content-vertical a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: black;
+      font-size: 14px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .dropdown-content-vertical a:hover {
+      background-color: #f0f0f0;
+      color: #4CAF50;
+    }
+
+    .contenido {
+      flex: 1;
+      padding: 40px;
+      max-width: 800px;
+    }
+
+    section {
+      margin-bottom: 100px;
+    }
+
+    h2 {
+      margin-top: 60px;
+    }
+
+    .contenido-principal {
+      flex: 2;
+      padding: 20px;
+    }
+
+    .layout {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .barra-lateral {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="barra-superior">
+    <div class="logo">
+      <img src="logoutrahd.png" alt="Logo">
+    </div>
+    <div class="enlaces">
+      <a href="#">Ayuda</a>
+      <a href="#">Contacto</a>
+    </div>
+    <div class="logous">
+      <img src="usuarioo.png" alt="Usuario">
+    </div>
+  </div>
+
+  <nav class="barra-inferior">
+    <a href="seleccion.html">Home</a>
+    </div>
+    <div class="dropdown">
+      <a href="test ley2.html">Test</a>
+    </div>
+    <div class="dropdown">
+      <a href="juego ley dos.html">Material interactivo</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="contenedor-central">
+    <div class="contenido">
+        
+      <section id="#ley2">
+        <p>
+        <h1>Segunda ley de Newton: Fuerza = masa x aceleración</h1>
+        <br>La segunda ley de Newton establece una relación cuantitativa entre la fuerza, la masa y la aceleración 
+        <br>de un cuerpo. Esta ley es fundamental para entender cómo se mueven los objetos cuando se les aplica una fuerza.
+          <h1>"La aceleración de un objeto es directamente proporcional a la fuerza neta que actúa sobre él e inversamente proporcional a su masa."</h1>
+          Es decir, si empujas un objeto con más fuerza, acelerará más; pero si el objeto es muy pesado, costará más acelerarlo.
+          <p><br>La segunda ley de Newton, enunciada por Sir Isaac Newton en el siglo XVII, es uno de los pilares 
+          <br>fundamentales de la física clásica. Junto con la primera y tercera ley, forma el núcleo de la 
+          <br>dinámica, la rama de la física que estudia las causas del movimiento de los cuerpos. 
+          <br>Esta ley establece la relación entre la fuerza neta que actúa sobre un objeto, su masa 
+          <br>y la aceleración que experimenta. De manera simple y concisa, la segunda ley de Newton 
+          <br>puede expresarse mediante la ecuación:
+          </p>
+          <b><p>Fórmula matemática</p></b>
+          <h1>F = m x a</h1>
+          <ol>F: Fuerza neta(en Newton, N)</ol>
+          <ol>M: masa del objeto (en kilogramos, KG)</ol>
+          <ol>A: aceleración (en metros por segundo al cuadrado, m/s²)</ol>
+          <p>
+            <br>Esta ecuación representa una idea profundamente intuitiva: 
+            <br>cuanto mayor es la fuerza aplicada a un objeto, mayor es su 
+            <br>aceleración; y cuanto mayor es la masa del objeto, menor es 
+            <br>su aceleración ante una misma fuerza. Esta relación directa 
+            <br>e inversa es la esencia de cómo los cuerpos responden a los 
+            <br>estímulos del entorno.
+            <h1>ORIGEN HISTÓRICO Y CONTEXTO </h1>
+            <br>Isaac Newton formuló sus leyes del movimiento en su obra "Philosophiæ Naturalis Principia Mathematica", 
+            <br>publicada en 1687. La segunda ley no fue enunciada originalmente como la conocemos hoy. Su forma moderna 
+            <br>es el resultado de desarrollos posteriores en la notación y comprensión del cálculo diferencial, una 
+            <br>herramienta que Newton mismo ayudó a fundar. En su obra, Newton describió esta ley en términos del 
+            <br>cambio del momento lineal (cantidad de movimiento):
+            <br>"El cambio del movimiento es proporcional a la fuerza motriz impresa y ocurre según la línea recta a 
+            <br>lo largo de la cual aquella fuerza se imprime.
+            <br>"El momento lineal, definido como p = m · v (masa por velocidad), es un concepto central en la física,
+            <br>y su tasa de cambio con respecto al tiempo nos lleva precisamente a la segunda ley:
+          </p>
+            <center>
+              <h1>F = dp/dt</h1>
+            </center>
+            <br>Cuando la masa es constante, esta expresión se reduce a la forma F = m · a, que es la que más frecuentemente 
+            <br>se enseña en los cursos de física básica.
+            <h1>Aplicaciones  de la Segunda ley de Newton</h1>
+            <p>
+            <br>La segunda ley de Newton se aplica a una variedad casi ilimitada de situaciones físicas, desde los movimientos 
+            <br>más simples hasta los más complejos. Algunas de sus aplicaciones más comunes incluyen:
+          <ul>1.Movimiento de caída libre: Cuando un objeto cae bajo la influencia exclusiva de la gravedad, la fuerza neta es igual a su peso (F = m · g), por lo tanto, su aceleración es constante e igual a la aceleración debida a la gravedad.</ul>
+           <ul>2.	Movimiento con fricción: Si un objeto se desliza sobre una superficie con fricción, la fuerza neta será la diferencia entre la fuerza aplicada y la fuerza de fricción. Esto modifica la aceleración experimentada.</ul> 
+           <ul>3.	Dinámica de vehículos: En la ingeniería automotriz y aeroespacial, la segunda ley es fundamental para diseñar sistemas de propulsión, calcular aceleraciones y determinar fuerzas que actúan sobre vehículos.</ul>
+           <ul>4.	Movimiento circular: Cuando un objeto se mueve en una trayectoria circular, la fuerza centrípeta necesaria para mantener el movimiento curvo se puede calcular con la segunda ley. En este caso, la aceleración tiene una dirección radial.</ul>
+           <ul>5.	Sistemas no inerciales: En sistemas de referencia acelerados, la aplicación de la segunda ley requiere introducir fuerzas ficticias o inerciales para mantener la validez de la ley dentro del sistema.</ul>
+          </p>
+           <h1>Dirección de la aceleración</h1>
+          La aceleración siempre tiene la misma dirección que la fuerza neta que se aplica. Por eso es importante hablar de vectores: tanto la fuerza como la aceleración tiene dirección y sentido.
+          <h2>🧪 Ejemplos prácticos</h2>
+          <ol>1. Empujar un carrito de supermercado vacío vs lleno</ol>
+          <ol>*Vacío: Se acelera fácilmente con poca fuerza.</ol>
+          <ol>*Lleno: Requiere más fuerza para acelerarlo, ya que tiene mayor masa.</ol>
+          <ol>2. Patear una pelota de fútbol</ol>
+          <ol>*Su usas más fuerza al patear, la pelota saldrá más rápido (Mayor aceleración).</ol>
+          <ol>*Una pelora más pesada necesitaría más fuerza para moverse igual de rápido.</ol>
+          <p>
+          <h1>Importancia en la ciencia y la tecnología</h1>
+          <br>La segunda ley de Newton no sólo es fundamental en el estudio del movimiento, sino también en toda la ciencia aplicada. Gracias a esta ley, es posible: 
+          <ul>●	Diseñar puentes, edificios y estructuras resistentes al aplicar correctamente las fuerzas y prever aceleraciones.</ul>
+          <ul>●	Entender el comportamiento de las partículas en aceleradores como el LHC.</ul>
+          <ul>●	Controlar satélites, misiles y naves espaciales mediante el cálculo preciso de las fuerzas necesarias para alcanzar determinadas trayectorias.</ul>
+          <ul>●	Resolver problemas en biomecánica, como el movimiento del cuerpo humano.</ul>
+        </p>
+        <p>
+          <h1>La segunda ley en diferentes contextos</h1>
+          <br>En el contexto de la mecánica relativista (cuando los objetos se mueven a velocidades cercanas a la de la luz)
+          <br>, la forma F = m · a ya no es válida en su forma clásica. En su lugar, se trabaja con la derivada del momento relativista. 
+          <br>En la mecánica cuántica, las nociones de trayectoria, fuerza y aceleración pierden sentido clásico, pero la idea de cambios 
+          <br>inducidos por fuerzas permanece en un sentido más abstracto, como operadores sobre funciones de onda.
+          <br>Esto demuestra que, aunque la segunda ley de Newton tiene limitaciones en contextos extremos, sigue siendo una 
+          <br>aproximación excelente para describir la gran mayoría de los fenómenos cotidianos y tecnológicos.
+
+        </p>
+          
+          <h2>Conclusión</h2>
+          La Segunda Ley de Newton es la base de casi toda la dinámica clásica. Nos permite predecir cómo se moverán los objetos cuando aplicamos fuerzas. Entender esta ley es clave para resolver problemas de física relacionados con el movimiento, el empuje, la fricción y más.
+        
+        
+      </section>
+    </div>
+
+    <div class="barra-derecha">
+      <div class="video-texto">
+        <iframe src="https://www.youtube.com/watch?v=9ME24MjqMrg" frameborder="0" allowfullscreen></iframe>
+        <p>Aquí puedes ver un video explicativo del tema de Segunda ley de Newton</p>
+      </div>
+
+      <div class="dropdown-vertical">
+        <button class="dropbtn-vertical" onclick="toggleDropdown()">Temas de Física</button>
+        <div class="dropdown-content-vertical" id="dropdownContenido">
+          <a href="fundamentos.html">Fundamentos Teóricos</a>
+          <a href="tema.html">Primera ley de Newton</a>
+          <a href="tema3.html">Tercera ley de Newton</a>
+          <a href="sistemas.html">Sistemas de Referencia Inerciales</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT para activar el menú -->
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("dropdownContenido");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    document.addEventListener("click", function(event) {
+      const dropdown = document.getElementById("dropdownContenido");
+      const button = document.querySelector(".dropbtn-vertical");
+      if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>

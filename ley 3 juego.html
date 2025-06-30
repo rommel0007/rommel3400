@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Minijuegos - Tercera Ley de Newton (Extra)</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f0f8ff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .juego {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      width: 600px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .escena {
+      position: relative;
+      background: #eef;
+      border: 2px dashed #ccc;
+      margin: 20px auto;
+      width: 500px;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    #cohete {
+      width: 40px;
+      height: 80px;
+      background: red;
+      position: absolute;
+      bottom: 0;
+      left: 230px;
+    }
+
+    #fuego {
+      width: 20px;
+      height: 40px;
+      background: orange;
+      position: absolute;
+      bottom: -40px;
+      left: 10px;
+      display: none;
+    }
+
+    #pelota {
+      width: 40px;
+      height: 40px;
+      background: green;
+      border-radius: 50%;
+      position: absolute;
+      left: 10px;
+      top: 80px;
+    }
+
+    #pared {
+      width: 20px;
+      height: 200px;
+      background: gray;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2c7cb8;
+    }
+
+    .info {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+   <h1>Tercera ley de Newton</h1>
+ <button onclick="window.location.href='tema3.html'">Volver</button>
+  <!-- Juego 3: Cohete -->
+  <div class="juego">
+    <h2>Despegue del Cohete 🚀</h2>
+    <div class="escena">
+      <div id="cohete">
+        <div id="fuego"></div>
+      </div>
+    </div>
+    <button onclick="despegar()">Despegar</button>
+    <button onclick="reiniciarCohete()">Reiniciar</button>
+    <div class="info" id="infoCohete"></div>
+  </div>
+
+  <!-- Juego 4: Rebote de Pelota -->
+  <div class="juego">
+    <h2>Pelota Contra la Pared 🧱</h2>
+    <div class="escena">
+      <div id="pelota"></div>
+      <div id="pared"></div>
+    </div>
+    <button onclick="lanzarPelota()">Lanzar</button>
+    <button onclick="reiniciarPelota()">Reiniciar</button>
+    <div class="info" id="infoPelota"></div>
+  </div>
+
+  <script>
+    // Cohete
+    const cohete = document.getElementById("cohete");
+    const fuego = document.getElementById("fuego");
+    const infoCohete = document.getElementById("infoCohete");
+    let altura = 0;
+    let enVuelo = false;
+
+    function despegar() {
+      if (enVuelo) return;
+      enVuelo = true;
+      fuego.style.display = "block";
+      function subir() {
+        if (altura >= 180) {
+          fuego.style.display = "none";
+          infoCohete.innerText = "¡El cohete sube porque el fuego empuja hacia abajo! (Acción y reacción)";
+          return;
+        }
+        altura += 3;
+        cohete.style.bottom = altura + "px";
+        requestAnimationFrame(subir);
+      }
+      subir();
+    }
+
+    function reiniciarCohete() {
+      altura = 0;
+      enVuelo = false;
+      cohete.style.bottom = "0px";
+      fuego.style.display = "none";
+      infoCohete.innerText = "";
+    }
+
+    // Pelota
+    const pelota = document.getElementById("pelota");
+    const infoPelota = document.getElementById("infoPelota");
+    let posX = 10;
+    let direccion = 1;
+
+    function lanzarPelota() {
+      if (direccion !== 1) return;
+      function moverPelota() {
+        if (posX >= 440) {
+          direccion = -1;
+          infoPelota.innerText = "¡La pared devuelve la fuerza, y la pelota rebota! (Acción y reacción)";
+        }
+        if (direccion === -1 && posX <= 10) {
+          return;
+        }
+        posX += 5 * direccion;
+        pelota.style.left = posX + "px";
+        requestAnimationFrame(moverPelota);
+      }
+      moverPelota();
+    }
+
+    function reiniciarPelota() {
+      posX = 10;
+      direccion = 1;
+      pelota.style.left = posX + "px";
+      infoPelota.innerText = "";
+    }
+  </script>
+
+</body>
+</html>
